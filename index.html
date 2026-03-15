@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Deny Ganteng</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    overflow:hidden;
+    font-family:monospace;
+    color:#00ff00;
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+.content{
+    position:absolute;
+    top:40%;
+    width:100%;
+    text-align:center;
+}
+
+h1{
+    font-size:55px;
+    text-shadow:0 0 15px #00ff00;
+}
+
+p{
+    font-size:22px;
+}
+
+.blink{
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="content">
+<h1>DENY GANTENG</h1>
+<p>ACCESS GRANTED...</p>
+<p>WELCOME TO MY HACKER STYLE WEBSITE</p>
+<p class="blink">_</p>
+</div>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b1b2a5d42.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+var canvas = document.getElementById("matrix");
+var ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+var letters = "01DENYGANTENGHACKER";
+letters = letters.split("");
+
+var fontSize = 14;
+var columns = canvas.width/fontSize;
+
+var drops = [];
+for(var x = 0; x < columns; x++)
+drops[x] = 1;
+
+function draw(){
+ctx.fillStyle = "rgba(0,0,0,0.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle = "#0F0";
+ctx.font = fontSize + "px monospace";
+
+for(var i = 0; i < drops.length; i++){
+var text = letters[Math.floor(Math.random()*letters.length)];
+ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+drops[i] = 0;
+
+drops[i]++;
+}
+}
+
+setInterval(draw, 35);
+</script>
+
+</body>
+</html>
